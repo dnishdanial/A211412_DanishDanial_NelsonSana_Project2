@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danish Danial | Mobile Programming e-Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #800000;
+            --primary-light: #FFE0D8;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background-light: #FAFAFA;
+            --white: #FFFFFF;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        /* Sticky Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: var(--primary-color);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        nav .logo {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Sections Layout */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        #home {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            padding-top: 7rem;
+            min-height: calc(100vh - 70px);
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-tag {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .hero-meta {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .hero-meta span {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-intro {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+        }
+
+        .sdg-box {
+            background-color: var(--white);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.25rem;
+            border-radius: 0 8px 8px 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .sdg-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Cards Grid Framework */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .card-reflection {
+            background-color: var(--background-light);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border-top: 2px solid var(--primary-light);
+            margin-top: auto;
+        }
+
+        .card-reflection strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Project Specific Styling */
+        .project-meta {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--text-dark);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .github-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Reflection Paragraph */
+        .reflection-text {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Layout */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-badge {
+            background-color: var(--white);
+            border: 1px solid var(--primary-light);
+            color: var(--text-dark);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: var(--transition);
+        }
+
+        .skill-badge:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        /* Resources List */
+        .resources-card {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .resources-list {
+            list-style-position: inside;
+            margin-bottom: 1.5rem;
+        }
+
+        .resources-list li {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .acknowledgement {
+            font-style: italic;
+            color: var(--text-light);
+            border-top: 1px solid #EEEEEE;
+            padding-top: 1rem;
+        }
+
+        /* Footer Element */
+        footer {
+            background-color: var(--text-dark);
+            color: rgba(255,255,255,0.7);
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 5rem;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 968px) {
+            #home {
+                flex-direction: column;
+                gap: 2rem;
+                padding-top: 4rem;
+                text-align: center;
+            }
+            .section-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .section-title {
+                text-align: center;
+            }
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero-content h1 {
+                font-size: 2.25rem;
+            }
+            .sdg-box {
+                border-left: 0;
+                border-top: 4px solid var(--primary-color);
+                border-radius: 0 0 8px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="#home" class="logo">Danish Danial e-Portfolio</a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#labs">Labs</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#reflection">Reflection</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#resources">Resources</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="home">
+    <div class="hero-content">
+        <span class="hero-tag">Software Engineering Student</span>
+        <h1>Danish Danial Bin Mohammed Idrun</h1>
+        <div class="hero-meta">
+            <span><strong>Matric No:</strong> A211412</span>
+            <span><strong>Programme:</strong> Bachelor of Software Engineering</span>
+            <span><strong>Instructor:</strong> Dr. Nelson Sana</span>
+        </div>
+        <p class="hero-intro">
+            Welcome to my mobile programming application portfolio. I specialize in designing declarative user interfaces with Jetpack Compose, managing robust architecture pipelines, and optimizing embedded persistent workflows on the Android operating system.
+        </p>
+        <div class="sdg-box">
+            <h3>Target Alignment: SDG 2 - Zero Hunger</h3>
+            <p>I choose to dedicate my application infrastructure development towards tracking and reducing localized food waste because connecting community food surpluses with vulnerable citizens effectively bridges structural inequalities and safeguards basic human welfare options.</p>
+        </div>
+    </div>
+</section>
+
+<section id="labs">
+    <h2 class="section-title">Laboratory Assignments</h2>
+    <div class="grid">
+
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/7X8F-xACEgg" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Lab 1: UI Components</h3>
+                <p class="card-description">Exploratory implementation of fundamental declarative view component structures using Jetpack Compose modifiers, surface parameters, and text properties.</p>
+                <div class="card-reflection">
+                    <strong>Reflection:</strong> Learnt how row and column scoping models isolate bounding layouts. Mastering spatial padding rules early on enabled me to align user card assets smoothly without causing UI overlapping.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/r4_li56uq7s" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Lab 2: User Interaction</h3>
+                <p class="card-description">Integrating active component state hooks via state wrappers to respond cleanly to dynamic runtime inputs.</p>
+                <div class="card-reflection">
+                    <strong>Reflection:</strong> Gained hands-on experience using remember blocks to preserve local transactional state. This helped me understand how mutating internal component parameters triggers localized view recomposition cycles smoothly.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/H6ObO11cszo" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Lab 3: Material Design 3</h3>
+                <p class="card-description">Polishing the visual system layer by configuring structural theme layouts, typography variations, and explicit color palettes.</p>
+                <div class="card-reflection">
+                    <strong>Reflection:</strong> Understood how utilizing color tokens standardizes component aesthetics. Creating an immersive bento bento dashboard using custom card shapes elevated the tactile feedback feel of the design layout.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/e1338y8yAk4" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Lab 4: Jetpack Navigation</h3>
+                <p class="card-description">Architecting multi-destination client-side navigation routing networks while managing safe parameter passing pipelines.</p>
+                <div class="card-reflection">
+                    <strong>Reflection:</strong> Discovered how to manage screen-state distribution hierarchies safely. Decoupling routing navigation controllers from basic presentation views prevents tightly-coupled interface setups.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/e0OsWLIrPUY" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Lab 5: Room Database</h3>
+                <p class="card-description">Structuring transactional offline caching logic using Jetpack Room access object interfaces and SQLite mappings.</p>
+                <div class="card-reflection">
+                    <strong>Reflection:</strong> Realized the massive performance benefits of observing state records through asynchronous Kotlin Flow structures. This allowed my tracking dashboards to auto-refresh natively whenever underlying storage states mutated.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="projects">
+    <h2 class="section-title">Core Development Projects</h2>
+    <div class="grid">
+
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/TNHRnLI5wPU" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <span class="project-meta">Project Milestone 1</span>
+                <h3 class="card-title">Kasih App - Core Prototypes</h3>
+                <p class="card-description"><strong>Problem Statement:</strong> Localized community kitchens face difficulties broadcasting immediate soup-ration availability metrics, resulting in food deterioration or missed rescue distributions.</p>
+                <a href="https://github.com/dnishdanial/A211412_DanishDanial_NelsonSana_Project1" class="github-btn" target="_blank">View on GitHub</a>
+                <div class="card-reflection">
+                    <strong>Lessons Learned:</strong> Successfully established cohesive multi-tier view screen distribution maps while sharing centralized state targets through unified view models. This solid architectural foundation minimized view re-render penalties significantly.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/CnkRhOfvIJ4" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <span class="project-meta">Project Milestone 2</span>
+                <h3 class="card-title">Kasih App - Full Cloud & Hardware Sync</h3>
+                <p class="card-description"><strong>Problem Statement:</strong> Fragmented local networks lack integrated systems that bridge offline operations, remote cloud sharing tracking, and precise geographical distribution mapping.</p>
+                <a href="https://github.com/DanishDanial/MatricNo_Name_Instructor_Project2" class="github-btn" target="_blank">View on GitHub</a>
+                <div class="card-reflection">
+                    <strong>Lessons Learned:</strong> Successfully expanded my application's reach into a 7-screen persistent ecosystem. Merging offline-accessible Room flows, live Firebase cloud streams, and real-time GPS hardware location mapping onto an explicit MapScreen built my confidence in modern full-stack Android engineering.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="reflection">
+    <h2 class="section-title">Reflection & Learning Journey</h2>
+    <div class="reflection-text">
+        <p>
+            My learning trajectory from crafting crude UI layout widgets in Lab 1 to assembling a fully-orchestrated, persistent, hardware-aware cloud ecosystem in Project 2 has been thoroughly transformative. Overcoming architectural bottlenecks like background threading issues, race conditions during remote cloud syncing, and managing location map lifecycle events forced me to thoroughly analyze asynchronous Android execution pipelines.
+        </p>
+        <br>
+        <p>
+            This extensive technical journey shifted my development approach from simply hacking isolated frontend views together to building resilient, highly predictable software architectures using established MVVM engineering patterns. Seeing my code actively contribute a real-world technological solution toward solving SDG 2: Zero Hunger hunger disparities has solidified my passion for developing purpose-driven mobile applications.
+        </p>
+    </div>
+</section>
+
+<section id="skills">
+    <h2 class="section-title">Skills & Tech Stack</h2>
+    <div class="skills-container">
+        <div class="skill-badge">Kotlin</div>
+        <div class="skill-badge">Jetpack Compose</div>
+        <div class="skill-badge">MVVM Architecture</div>
+        <div class="skill-badge">Room Database (SQLite)</div>
+        <div class="skill-badge">Asynchronous Flows & Coroutines</div>
+        <div class="skill-badge">Firebase Cloud Firestore</div>
+        <div class="skill-badge">Retrofit HTTP Client</div>
+        <div class="skill-badge">Fused Location Provider API (GPS Hardware)</div>
+        <div class="skill-badge">Google Maps Android SDK</div>
+        <div class="skill-badge">Material Design 3 Tokenization</div>
+        <div class="skill-badge">Git & Version Control Systems</div>
+    </div>
+</section>
+
+<section id="resources">
+    <h2 class="section-title">Resources & References</h2>
+    <div class="resources-card">
+        <ul class="resources-list">
+            <li><strong>Jetpack Architecture Components:</strong> Android official development portal guidelines for clean state preservation.</li>
+            <li><strong>Google Play Services Location Provider API:</strong> Used to access precise hardware satellite metrics cleanly.</li>
+            <li><strong>Firebase Firestore Documentation:</strong> Official software manuals used to implement snapshot document streams.</li>
+            <li><strong>Retrofit 2 HTTP Client Engine:</strong> Applied to process network serialization automatically via standard GSON converter tools.</li>
+        </ul>
+        <p class="acknowledgement">
+            <strong>AI Assistance Acknowledgement:</strong> Generative AI workflows were utilized for testing optimization edge cases, validating room entity migration steps, and structuring code architectures to match course requirements.
+        </p>
+    </div>
+</section>
+
+<footer>
+    <p><strong>Danish Danial Bin Mohammed Idrun</strong> | Matric No: A211412</p>
+    <p>Universiti Kebangsaan Malaysia (UKM) &copy; 2026</p>
+</footer>
+
+</body>
+</html>
